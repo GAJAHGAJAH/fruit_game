@@ -74,7 +74,7 @@ class FruitCatcherGame extends FlameGame
     // Batasi agar tidak keluar layar
     basket.position.x = basket.position.x.clamp(
       basket.size.x / 2,
-      size.x - basket.size.x / 2,
+      size.x - basket.size.x / 2, 
     );
   }
 

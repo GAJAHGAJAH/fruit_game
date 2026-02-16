@@ -1,7 +1,6 @@
 import 'package:flame_audio/flame_audio.dart';
 
 class AudioManager {
-
   static final AudioManager _instance = AudioManager._internal();
   factory AudioManager() => _instance;
   AudioManager._internal();
@@ -25,17 +24,13 @@ class AudioManager {
 
   void playBackgroundMusic() {
     if (_isMusicEnabled) {
-      FlameAudio.bgm.play(
-        'music/background_music.mp3',
-        volume: _musicVolume,
-      );
+      FlameAudio.bgm.play('assets/audio/music/background_music.mp3', volume: _musicVolume);
     }
   }
 
   void stopBackgroundMusic() {
-  FlameAudio.bgm.stop();
-}
-
+    FlameAudio.bgm.stop();
+  }
 
   void toggleMusic() {
     _isMusicEnabled = !_isMusicEnabled;
