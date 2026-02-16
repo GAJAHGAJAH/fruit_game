@@ -1,5 +1,14 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'game/fruit_catcher_game.dart';
+
+late FruitCatcherGame game;
+
+@override
+void initState() {
+  super.initState();
+  game = FruitCatcherGame();
+}
 
 void main() {
   runApp(const MyApp());
@@ -62,6 +71,8 @@ class _GameScreenState extends State<GameScreen> {
     ],
   ),
 ),
+
+GameWidget(game: game),
           Positioned(
             top: 50,
             left: 20,
