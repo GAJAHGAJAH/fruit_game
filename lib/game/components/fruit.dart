@@ -7,16 +7,20 @@ import 'basket.dart';
 
 class Fruit extends PositionComponent
     with HasGameRef<FruitCatcherGame>, CollisionCallbacks {
+  late Sprite sprite;
 
   final double fallSpeed = 200;
-  final Random random = Random();
 
-  Fruit({super.position}) : super(size: Vector2.all(40));
+  Fruit({super.position}) : super(size: Vector2.all(60)); // ukuran buah
 
   @override
   Future<void> onLoad() async {
     await super.onLoad();
+
+    sprite = await gameRef.loadSprite('DIMASfOTO.jpeg');
+
     anchor = Anchor.center;
+
     add(CircleHitbox());
   }
 
@@ -32,24 +36,23 @@ class Fruit extends PositionComponent
   }
 
   @override
-  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
-    super.onCollision(intersectionPoints, other);
+  void render(Canvas canvas) {
+    final rect = Rect.fromLTWH(0, 0, size.x, size.y);
 
+    // Clip agar gambar menjadi bulat
+    canvas.save();
+    canvas.clipPath(Path()..addOval(rect));
+
+    sprite.render(canvas, size: size);
+
+    canvas.restore();
+  }
+
+  @override
+  void onCollision(Set<Vector2> points, PositionComponent other) {
     if (other is Basket) {
       gameRef.incrementScore();
       removeFromParent();
     }
-  }
-
-  @override
-  void render(Canvas canvas) {
-    final paint = Paint()
-      ..color = Colors.primaries[random.nextInt(Colors.primaries.length)];
-
-    canvas.drawCircle(
-      Offset(size.x / 2, size.y / 2),
-      size.x / 2,
-      paint,
-    );
   }
 }
