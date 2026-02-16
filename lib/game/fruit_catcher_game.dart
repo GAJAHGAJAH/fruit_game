@@ -96,5 +96,5 @@ class FruitCatcherGame extends FlameGame
   }
 
   @override
-  Color backgroundColor() => const Color(0xFF87CEEB); // Sky blue
+  Color backgroundColor() => const Color.fromARGB(255, 120, 175, 226); // Sky blue
 }
