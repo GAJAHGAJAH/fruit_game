@@ -32,6 +32,11 @@ class AudioManager {
     }
   }
 
+  void stopBackgroundMusic() {
+  FlameAudio.bgm.stop();
+}
+
+
   void toggleMusic() {
     _isMusicEnabled = !_isMusicEnabled;
     if (_isMusicEnabled) {
